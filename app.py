@@ -26,7 +26,7 @@ PREDICTOR_MODEL_LIST = list()
 
 
 pc = PrometheusConnect(
-    url=URL,
+    url=Configuration.prometheus_url,
     auth=HTTPBasicAuth(os.getenv(USERNAME), os.getenv(PASSWORD)),
     disable_ssl=True  # Set to False if your Prometheus server uses SSL/TLS
 )
