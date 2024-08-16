@@ -14,6 +14,7 @@ from prometheus_api_client import PrometheusConnect, Metric
 from configuration import Configuration
 import model
 import schedule
+from requests.auth import HTTPBasicAuth
 
 # Set up logging
 _LOGGER = logging.getLogger(__name__)
@@ -25,9 +26,9 @@ PREDICTOR_MODEL_LIST = list()
 
 
 pc = PrometheusConnect(
-    url=Configuration.prometheus_url,
-    headers=Configuration.prom_connect_headers,
-    disable_ssl=True,
+    url=URL,
+    auth=HTTPBasicAuth(os.getenv(USERNAME), os.getenv(PASSWORD)),
+    disable_ssl=True  # Set to False if your Prometheus server uses SSL/TLS
 )
 
 for metric in METRICS_LIST:
